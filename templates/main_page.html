@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            {% if is_admin %}
+            <form action="/adminpage" method="post">
+                <button id="admin-button" type="submit">Admin Actions</button>
+                <input type="hidden" name="admin" value="{{is_admin}}">
+            </form>
+            {% endif %}
+            <h1 style="margin: 0;display: flex;font-size: xx-large;text-align: center;">
+                PROCTORBOOK</h1>
+            <form action="/sendusn" method="post">
+                <input type="hidden" name="admin" value="{{is_admin}}">
+                <div class="search-bar">
+                    <input type="text" placeholder="enter student usn" name="studentusn">
+                    <input type="number" min="1" max="8" placeholder=" semno" name="semno">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+
+        </nav>
+    </header>
+    <main>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Student Information</title>
+            <link rel="stylesheet" href="main.css">
+        </head>
+
+        <body>
+            <header>
+            </header>
+            <main>
+                <section class="student-info"
+                    style="background-color: lightgoldenrodyellow;width: 400px;line-height: 35px;">
+                    <h2>Student Information</h2>
+                    {% if postdata %}
+                    <ul>
+
+                        <li>student usn:<b>{{postdata.student_usn}}</b></li>
+                        <li>first name:<b>{{postdata.s_fname}}</b></li>
+                        <li>middle name:<b>{{postdata.s_mname}}</b></li>
+                        <li>last name:<b>{{postdata.s_lname}}</b></li>
+                        <li>branch:<b>{{postdata.s_branchid}}</b></li>
+                        <li>sem:<b>{{postdata.s_semid}}</b></li>
+                        <li>proctor name:<b>{{postdata.s_proct_id}}</b></li>
+                        <li>date of birth:<b>{{postdata.s_dob}}</b></li>
+                        <li>address:<b>{{postdata.s_address}}</b></li>
+                        <li>email:<b>{{postdata.s_email}}</b></li>
+                        <li>phone no:<b>{{postdata.s_pno}}</b></li>
+                        <li>gender:<b>{{postdata.s_gender}}</b></li>
+                        <li>father name:<b>{{postdata.s_fathername}}</b></li>
+                        <li>mother name:<b>{{postdata.s_mothername}}</b></li>
+                        <li>gaurdian(if any):<b>{{postdata.s_guardian}}</b></li>
+                        <li> parent no:<b>{{postdata.s_parentno}}</b></li>
+                    </ul>
+                    {% endif %}
+
+                </section>
+            </main>
+
+            <section class="course-info">
+                <h2>SCORE</h2>
+                {% if printdata %}
+                <table style="border-color: black;">
+                    <thead>
+                        <tr>
+                            <th>Subject ID</th>
+                            <th>internal_1</th>
+                            <th>internal_2</th>
+                            <th>internal_3</th>
+                            <th>internal</th>
+                            <th>external</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in printdata %}
+                        <tr>
+                            <td>{{ row.sub_id }}</td>
+                            <td>{{ row.ia1_marks }}</td>
+                            <td>{{ row.ia2_marks }}</td>
+                            <td>{{row.ia3_marks}}</td>
+                            <td>{{ row.int_marks }}</td>
+                            <td>{{ row.ext_marks }}</td>
+                            <td>{{ row.final_marks }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                    {% endif %}
+                </table>
+                <h2>Attendance</h2>
+                {% if publishdata %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject ID</th>
+                            <th>IA-1</th>
+                            <th>IA-2</th>
+                            <th>IA-3</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in publishdata %}
+                        <tr>
+                            <td>{{ row.sub_id }}</td>
+                            <td>{{ row.ia1_at }}</td>
+                            <td>{{ row.ia2_at }}</td>
+                            <td>{{row.ia3_at}}</td>
+                            <td>{{ row.total_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                    {% endif %}
+                </table>
+            </section>
+    </main>
+</body>
+
+</html>
+<script>
+
+
+</script>

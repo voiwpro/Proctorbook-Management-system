@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="login-page">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="script.js"></script>
+</head>
+
+<body ng-controller="login">
+    <nav class="nav-menu">
+        proctorbook
+    </nav>
+    <form ng-if="showform" ng-disabled="disable" class="login-form" method="post" action="/submitdata">
+        <div>
+            <label for="username" style="color: white;">enter username:</label>
+            <input type="text" id="username" name="username" style="width: 200px;height: 30px;" required>
+        </div>
+        <div>
+            <label for="pass" style="color: white;">enter password:</label>
+            <input type="password" name="password" id="pass" style="width: 200px;height: 30px;" required>
+        </div>
+        <button class="login">login</button>
+        <a href="{{ url_for('signup') }}">
+            <p class="newuser" style="color: white;">new user?</p>
+        </a>
+
+
+    </form>
+
+</body>
+<script>
+    var app = angular.module('login-page', []);
+    app.controller('login', function ($scope) {
+        let flag = 0;
+        if (flag === 0) {
+            console.log("yo")
+            $scope.showform = true;
+            $scope.signup = false;
+            $scope.dis = true;
+        }
+
+        $scope.hideform = function () {
+            $scope.showform = false;
+            $scope.disable = true;
+            console.log("hi");
+            $scope.signup = true;
+            flag = 1;
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='insert.css') }}">
+</head>
+
+<body>
+    <form action="/back" method="post">
+        <button type="submit" class="back">Back</button>
+    </form>
+
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <h1>Add Student Information</h1>
+        <form action="/submitstudent" method="post">
+            <div class="form-group">
+                <label for="student_usn">Student USN:</label>
+                <input type="text" id="student_usn" name="student_usn" required>
+            </div>
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="middle_name">Middle Name (Optional):</label>
+                <input type="text" id="middle_name" name="middle_name">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth">Date of Birth:</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="phone_no">Phone No:</label>
+                <input type="tel" id="phone_no" name="phone_no" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="father_name">Father Name:</label>
+                <input type="text" id="father_name" name="father_name" required>
+            </div>
+            <div class="form-group">
+                <label for="mother_name">Mother Name:</label>
+                <input type="text" id="mother_name" name="mother_name" required>
+            </div>
+            <div class="form-group">
+                <label for="guardian_name">Guardian Name (Optional):</label>
+                <input type="text" id="guardian_name" name="guardian_name">
+            </div>
+            <div class="form-group">
+                <label for="parent_no">parent contact info</label>
+                <input type="text" id="parent_no" name="parent_no">
+            </div>
+            <div class="form-group">
+                <label for="branch">Branch:</label>
+                <select id="branch" name="branch" required>
+                    <option value="">Select Branch</option>
+                    <option value="1">Computer Science Engineering</option>
+                    <option value="2">Electronics & Communication Engineering</option>
+                    <option value="3">Civil Engineering</option>
+                    <option value="4">Mechanical Engineering</option>
+                    <option value="5">Artificial Intelligence & Data Science</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sem_no">Semester No:</label>
+                <input type="number" id="sem_no" name="sem_no" min="1" max="8" required>
+            </div>
+            <div class="form-group">
+                <label for="proct_id">proctor id:</label>
+                <input type="number" id="proct_id" name="proct_id" required>
+            </div>
+            <div class="form-group">
+                <label for="scheme">Scheme:</label>
+                <select id="scheme" name="schemes" required>
+                    <option value="">Select scheme</option>
+                    <option value="2018">2018</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                </select>
+                <div class="submit-button">
+                    <button type="submit">Submit</button>
+                </div>
+        </form>
+    </div>
+</body>
+
+</html>

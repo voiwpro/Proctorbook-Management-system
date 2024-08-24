@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='temp.css') }}">
+
+</head>
+
+<body>
+    <div class="container">
+        <form action="/home" method="post"><button
+                style="position: fixed;left: 20px;top: 0px;border: none;top: 20px;width: 75px;height: 30px;border-radius: 6px;background-color: lightskyblue;color: white;cursor: pointer;">home</button>
+            <input type="hidden" name="admin" value="is_admin">
+        </form>
+        <form action="/logout" method="post"><button
+                style="position: fixed;left: 20px;bottom: 20px;width: 75px;height: 30px;background-color: white;color: black;border: 2px solid black; cursor: pointer;">logout</button>
+        </form>
+        <form action="/proctid" method="post" id="filter">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search proctor id" name="proct_id">
+                <select name="semfilter" style="width: 75px; font-size: 20px;">sem
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select></th>
+                <button id="search-button" type="submit">Search</button>
+
+            </div>
+        </form>
+        {% if flag %}
+        <div class="alert alert-dismissible alert-primary fade show" role="alert">
+            <p id="message">student deleted successfully</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="position: relative;">Student USN</th>
+                    <form action="/sem_filter" method="post">
+
+                    </form>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for values in printvalue %}
+                <tr>
+
+                    <td><b>{{ values[0]}}</b> </td>
+
+
+                    <td
+                        style="display: flex;flex-direction: row;justify-content: space-around;border-top: none;border-left: none;">
+                        <form action="/usnformarks" method="post">
+                            <button value="{{values[0]}}" name="index" type="submit" class="button button1"
+                                style="margin-right: 30px;">Insert
+                                Marks</button>
+                            <input type="hidden" name="proct" value="{{proctid}}">
+                        </form>
+                        <form action="/attendentry" method="post"><button value="{{values[0]}}" name="inde"
+                                class="button button2" style="margin-right: 30px;">Insert Attendance</button></form>
+                        <form action="deletestudent" method="post"><button class="button button3" value="{{values[0]}}"
+                                name="deletes" style="margin-right: 30px;">Delete
+                                student</button></form>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if proct %}
+        <form action="/insertion">
+            <button id="insert-new-button">Insert New Student Details </button>
+        </form>
+        {% endif %}
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#delete-form").submit(function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var s_usn = $("#s_usn").val();
+
+            $.ajax({
+                url: "/deletestudent",
+                type: "POST",
+                data: { "deletes": s_usn },
+                success: function (response) {
+                    $("#message").html(response.message); // Update message element
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#message").html("Error deleting student: " + textStatus);
+                }
+            });
+        });
+    });
+</script>
+
+</html>

@@ -1,0 +1,94 @@
+/* style.css */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 10px;
+
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+
+}
+
+nav a:hover {
+    color: #000;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.search-bar input {
+    padding: 5px;
+    border: 1px solid black;
+    margin-right: 5px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+}
+
+section {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+th {
+    text-align: left;
+}
+
+.student-info {
+    width: 50%;
+}
+
+#admin-button {
+    width: 100px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+
+}
