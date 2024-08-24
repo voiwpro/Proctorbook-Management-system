@@ -18,44 +18,18 @@ Proctor Book is a Flask-based web application designed for academic management, 
 - **Frontend**: HTML, CSS, Bootstrap
 - **Authentication**: Flask-Login, Flask-WTF
 
-## Installation
-
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/yourusername/proctor-book.git
-    cd proctor-book
-    ```
-
-2. **Create and activate a virtual environment**:
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
-
-3. **Install the required packages**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Set up the database**:
-    ```bash
-    flask db init
-    flask db migrate
-    flask db upgrade
-    ```
-
-5. **Run the application**:
-    ```bash
-    flask run
-    ```
-
-6. **Access the application**:
-   Open your web browser and navigate to `http://127.0.0.1:5000`.
 
 ## Usage
 
 - **Staff Users**: Login and manage student records, marks, and attendance.
 - **Students**: Login and view personal records, marks, and attendance.
 
+## Screenshots
+![Main Menu](assets/loginpage.png)
+![Main Menu](assets/Screenshot%20(228).png)
+![Main Menu](assets/Screenshot%20(229).png)
+![Main Menu](assets/Screenshot%20(232).png)
+![Main Menu](assets/Screenshot%20(231).png)
+![Main Menu](assets/Screenshot%20(230).png)
 
 
